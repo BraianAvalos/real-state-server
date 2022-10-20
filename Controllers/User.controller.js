@@ -5,7 +5,7 @@ async function createUser(req, res){
     const userName = req.body.userName
     const password = req.body.password
 
-    if(firstName && lastName && userName && pass){
+    if(firstName && lastName && userName && password){
        try {
             const newUser = await new User({
                 firstName: firstName,
