@@ -31,7 +31,24 @@ async function createUser(req, res){
         })
     }
 }
+async function getAllUser(req, res){
+    const user = await User.find({})
+    try {
+        const user = await User.find({})
+        res.status(200).json({
+            message: "Usuarios Encontrados",
+            obj: user
+        })
+
+    }catch (e) {
+        res.status(500).json({
+            message: "No encontramos usuarios",
+            obj: user
+        })
+    }
+}
 
 module.exports = {
-    createUser
+    createUser,
+    getAllUser
 }
