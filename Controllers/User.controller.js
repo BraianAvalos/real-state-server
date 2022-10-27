@@ -53,16 +53,16 @@ async function loginUser(req, res) {
 
 
     try {
-        const user = await User.find({userName: username , password: pass})
+        const users = await User.find({userName: username , password: pass})
         res.status(200).json({
             message: "Usuarios Encontrados",
-            obj: user
+            obj: users
         })
 
     } catch (e) {
         res.status(500).json({
             message: "No encontramos usuarios",
-            obj: user
+            obj: users
         })
     }
 }
