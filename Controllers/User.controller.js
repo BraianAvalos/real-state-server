@@ -32,7 +32,6 @@ async function createUser(req, res){
     }
 }
 async function getAllUser(req, res){
-    const user = await User.find({})
     try {
         const user = await User.find({})
         res.status(200).json({
@@ -40,7 +39,27 @@ async function getAllUser(req, res){
             obj: user
         })
 
-    }catch (e) {
+    } catch (e) {
+        res.status(500).json({
+            message: "No encontramos usuarios",
+            obj: user
+        })
+    }
+}
+async function loginUser(req, res) {
+
+    const username =req.body.userName
+    const pass = req.body.passwordUser
+
+
+    try {
+        const user = await User.find({userName: username , password: pass})
+        res.status(200).json({
+            message: "Usuarios Encontrados",
+            obj: user
+        })
+
+    } catch (e) {
         res.status(500).json({
             message: "No encontramos usuarios",
             obj: user
@@ -50,5 +69,6 @@ async function getAllUser(req, res){
 
 module.exports = {
     createUser,
-    getAllUser
+    getAllUser,
+    loginUser
 }
