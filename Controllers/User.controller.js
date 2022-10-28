@@ -60,7 +60,8 @@ async function loginUser(req, res) {
                 })
             }else{
                res.status(400).json({
-                   message: "Usuario o contraseña incorrectos"
+                   message: "Usuario o contraseña incorrectos",
+                   obj: null
                })
            }
         } catch (e) {
