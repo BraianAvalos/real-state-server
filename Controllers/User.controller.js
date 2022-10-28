@@ -51,19 +51,22 @@ async function loginUser(req, res) {
     const username =req.body.userName
     const pass = req.body.passwordUser
 
-
-    try {
-        const users = await User.find({userName: username , password: pass})
-        res.status(200).json({
-            message: "Usuarios Encontrados",
-            obj: users
-        })
-
-    } catch (e) {
-        res.status(500).json({
-            message: "No encontramos usuarios",
-            obj: users
-        })
+        try {
+            let users = await User.findOne({userName: username, password: pass})
+           if(users) {
+                res.status(200).json({
+                    message: "Usuarios Encontrados",
+                    obj: users
+                })
+            }else{
+               res.status(400).json({
+                   message: "Usuario o contraseña incorrectos"
+               })
+           }
+        } catch (e) {
+            res.status(500).json({
+                message: "No encontramos usuarios",
+            })
     }
 }
 
